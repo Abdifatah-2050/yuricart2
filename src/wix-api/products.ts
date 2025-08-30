@@ -139,6 +139,27 @@ export async function getRelatedProducts(
   return productsResult.items;
 }
 
+export async function getProductById(wixClient: WixClient, productId: string) {
+  const result = await wixClient.products.getProduct(productId);
+  return result.product;
+}
+
+
+
+  //   const productIds = result.recommendation?.items
+//     .map((item) => item.catalogItemId)
+//     .filter((id) => id !== undefined);
+
+//   if (!productIds || !productIds.length) return [];
+
+//   const productsResult = await wixClient.products
+//     .queryProducts()
+//     .in("_id", productIds)
+//     .limit(4)
+//     .find();
+
+//   return productsResult.items;
+
 
 
 // export const getProductBySlug = cache(
