@@ -1,10 +1,18 @@
 
-import { getProductBySlug } from "@/wix-api/products";
+import { getProductBySlug, getRelatedProducts } from "@/wix-api/products";
 import { notFound } from "next/navigation";
 import ProductDetails from "./ProductDetails";
 import { delay } from "@/lib/utils";
 import { Metadata } from "next";
 import { getWixServerClient } from "@/lib/wix-client.server";
+import { Suspense } from "react";
+import Product from "@/components/Products";
+import { Skeleton } from "@/components/ui/skeleton";
+import CreateProductReviewButton from "@/components/reviews/CreateProductReviewButton";
+import { products } from "@wix/stores";
+import { getLoggedInMember } from "@/wix-api/members";
+import ProductReviews, { ProductReviewsLoadingSkeleton } from "./ProductReviews";
+import { getProductReviews } from "@/wix-api/reviews";
 
 
 interface PageProps {
@@ -52,20 +60,95 @@ export default async function Page({ params: { slug } }: PageProps) {
                 
 
       {/* LATER */}
-      {/* <hr />
+      <hr />
       <Suspense fallback={<RelatedProductsLoadingSkeleton />}>
         <RelatedProducts productId={product._id} />
       </Suspense>
-              <hr /> */}
+              <hr />
               
-              
-      {/* <div className="space-y-5">
+              {/* LATER */}
+      <div className="space-y-5">
         <h2 className="text-2xl font-bold">Buyer reviews</h2>
         <Suspense fallback={<ProductReviewsLoadingSkeleton />}>
           <ProductReviewsSection product={product} />
         </Suspense>
+      </div>
+          
+      {/* <div className="space-y-5">
+        <h2 className="text-2xl font-bold">Buyer reviews</h2>
+        <Suspense fallback="LOADING...">
+          <ProductReviewsSection product={product} />
+        </Suspense>
       </div> */}
     </main>
+  );
+}
+
+interface RelatedProductsProps {
+  productId: string;
+}
+
+async function RelatedProducts({ productId }: RelatedProductsProps) {
+  const relatedProducts = await getRelatedProducts(
+    getWixServerClient(),
+    productId,
+  );
+
+  if (!relatedProducts.length) return null;
+
+  return (
+    <div className="space-y-5">
+      <h2 className="text-2xl font-bold">Related Products</h2>
+      <div className="flex grid-cols-2 flex-col gap-5 sm:grid lg:grid-cols-4">
+        {relatedProducts.map((product) => (
+          <Product key={product._id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function RelatedProductsLoadingSkeleton() {
+  return (
+    <div className="flex grid-cols-2 flex-col gap-5 pt-12 sm:grid lg:grid-cols-4">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <Skeleton key={i} className="h-[26rem] w-full" />
+      ))}
+    </div>
+  );
+}
+
+
+
+interface ProductReviewsSectionProps {
+  product: products.Product;
+}
+
+async function ProductReviewsSection({ product }: ProductReviewsSectionProps) {
+  if (!product._id) return null;
+
+  const wixClient = getWixServerClient();
+
+  const loggedInMember = await getLoggedInMember(wixClient);
+
+  const existingReview = loggedInMember?.contactId
+    ? (
+        await getProductReviews(wixClient, {
+          productId: product._id,
+          contactId: loggedInMember.contactId,
+        })
+      ).items[0]
+    : null;
+
+  return (
+    <div className="space-y-5">
+      <CreateProductReviewButton
+        product={product}
+        loggedInMember={loggedInMember}
+        hasExistingReview={!!existingReview}
+      />
+      <ProductReviews product={product} />
+    </div>
   );
 }
 
