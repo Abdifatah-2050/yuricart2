@@ -6,6 +6,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ClearCart from "./ClearCart";
 import Order from "@/components/Order";
+import twilio from "twilio";
 
 interface PageProps {
   searchParams: { orderId: string };
@@ -14,6 +15,12 @@ interface PageProps {
 export const metadata: Metadata = {
   title: "Checkout success",
 };
+
+// ✅ Twilio Client Setup
+const twilioClient = twilio(
+  process.env.TWILIO_ACCOUNT_SID!,
+  process.env.TWILIO_AUTH_TOKEN!,
+);
 
 export default async function Page({ searchParams: { orderId } }: PageProps) {
   const wixClient = getWixServerClient();
@@ -26,6 +33,42 @@ export default async function Page({ searchParams: { orderId } }: PageProps) {
   if (!order) {
     notFound();
   }
+
+  // ---------------------------
+  // Type-safe WhatsApp Notification
+  const shippingDestination =
+    order.shippingInfo?.logistics?.shippingDestination;
+
+  const customerName = `${shippingDestination?.contactDetails?.firstName || "Unknown"} ${shippingDestination?.contactDetails?.lastName || ""}`;
+  const total =
+    order.priceSummary?.total?.formattedAmount ||
+    order.priceSummary?.subtotal?.formattedAmount ||
+    "Unknown Total";
+  const products =
+    order.lineItems?.map((item) => item.productName?.translated).join(", ") ||
+    "Unknown Products";
+  const deliveryAddress = shippingDestination?.address
+    ? `${shippingDestination.address.streetAddress?.name || ""} ${shippingDestination.address.streetAddress?.number || ""}, ${shippingDestination.address.postalCode || ""} ${shippingDestination.address.city || ""}, ${shippingDestination.address.subdivision || shippingDestination.address.country || ""}`
+    : "Unknown Address";
+
+  try {
+    await twilioClient.messages.create({
+      from: process.env.TWILIO_WHATSAPP_NUMBER!, // Twilio Sandbox / verified number
+      to: "whatsapp:+254768054542", // Admin WhatsApp number
+      body: `
+🛍️ New Order Received!
+Order ID: ${order.number}
+Customer: ${customerName}
+Total: ${total}
+Products: ${products}
+Delivery: ${deliveryAddress}
+      `,
+    });
+    console.log("✅ WhatsApp notification sent successfully");
+  } catch (err) {
+    console.error("❌ Twilio WhatsApp Error:", err);
+  }
+  // ---------------------------
 
   const orderCreatedDate = order._createdDate
     ? new Date(order._createdDate)
@@ -43,7 +86,7 @@ export default async function Page({ searchParams: { orderId } }: PageProps) {
         </Link>
       )}
       {orderCreatedDate &&
-        orderCreatedDate.getTime() > Date.now() - 60_000 * 5 && <ClearCart/> }
+        orderCreatedDate.getTime() > Date.now() - 60_000 * 5 && <ClearCart />}
     </main>
   );
 }
