@@ -5,7 +5,8 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReactQueryProvider from "./ReactQueryProvider";
 import { Toaster } from "@/components/ui/toaster";
-import {ThemeProvider} from 'next-themes'
+import { ThemeProvider } from "next-themes";
+import WhatsAppButton from "@/components/ui/WhatsAppButton"; // ✅ Import added
 
 const lora = Lora({ subsets: ["latin"] });
 
@@ -14,7 +15,8 @@ export const metadata: Metadata = {
     template: "%s | Yuricart",
     absolute: "Yuricart",
   },
-  description: "Shop smart, save big – Discover electronics without breaking the bank.",
+  description:
+    "Shop smart, save big – Discover electronics without breaking the bank.",
 };
 
 export default function RootLayout({
@@ -26,17 +28,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={lora.className}>
         <ThemeProvider
-         attribute="class"
+          attribute="class"
           defaultTheme="system"
           enableSystem={true}
           disableTransitionOnChange
         >
-      <ReactQueryProvider>
-        <Navbar/>
-        {children}
-        <Footer/>
-        </ReactQueryProvider>
-        <Toaster/>
+          <ReactQueryProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </ReactQueryProvider>
+          <Toaster />
+          <WhatsAppButton /> {/* ✅ Floating WhatsApp added */}
         </ThemeProvider>
       </body>
     </html>

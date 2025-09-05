@@ -23,40 +23,31 @@ import MobileMenu from "./MobileMenu";
 // import MobileMenu from "./MobileMenu";
 // import ShoppingCartButton from "./ShoppingCartButton";
 
-
-
-
 // TEMP
 // async function getCart() {
 //     const wixClient = getWixClient()
 
 //     try {
 //         return await wixClient.currentCart.getCurrentCart()
-        
+
 //     } catch (error) {
 //         if ((error as any).details.applicationError.code === "OWNED_CART_NOT_FOUND") {
 //           return null
 //         } else {
 //             throw error;
 //       }
-        
+
 //     }
 
 // }
 
-
 export default async function Navbar() {
-
-
-
-    // TEMP
+  // TEMP
   //  const totalQuantity =
   //   cart?.lineItems?.reduce(
   //     (acc, item) => acc + (item.quantity || 0),
   //     0,
   //   ) || 0;
-
-
 
   const wixClient = getWixServerClient();
   const [cart, loggedInMember, collections] = await Promise.all([
@@ -76,7 +67,12 @@ export default async function Navbar() {
         </Suspense>
         <div className="flex flex-wrap items-center gap-5">
           <Link href="/" className="flex items-center gap-4">
-            <Image src="/logo.png" alt="Flow Shop logo" width={40} height={40} />
+            <Image
+              src="/logo.png"
+              alt="Flow Shop logo"
+              width={40}
+              height={40}
+            />
             <span className="text-xl font-bold">Yuricart</span>
           </Link>
           <MainNavigation
@@ -86,16 +82,16 @@ export default async function Navbar() {
         </div>
 
         {/* SEARCHBAR */}
-        <SearchField className="hidden max-w-96 lg:inline right-3" />
-         
-          {/* USER-ICON */}
+        <SearchField className="right-3 hidden max-w-96 lg:inline" />
+
+        {/* USER-ICON */}
         <div className="flex items-center justify-center gap-5">
-           <div className="flex items-center justify-center gap-5">
-            <UserButton loggedInMember={loggedInMember}
-            className="hidden lg:inline-flex"
-            />    
+          <div className="flex items-center justify-center gap-5">
+            <UserButton
+              loggedInMember={loggedInMember}
+              className="hidden lg:inline-flex"
+            />
             <ShoppingCartButton initialData={cart} />
-            
           </div>
         </div>
       </div>
