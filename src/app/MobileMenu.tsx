@@ -16,6 +16,7 @@ import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface MobileMenuProps {
   collections: collections.Collection[];
@@ -47,21 +48,35 @@ export default function MobileMenu({
 
   return (
     <>
-      <Button
-        size="icon"
-        variant="ghost"
-        className="inline-flex lg:hidden"
-        onClick={() => setIsOpen(true)}
-      >
-        <MenuIcon />
-      </Button>
+      {/* ✅ Mobile top bar */}
+      <div className="bg-white shadow-md lg:hidden">
+        {/* Top row → menu + logo */}
+        <div className="flex p-3">
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0">
+            <Image
+              src="/logo.png" // apna logo path
+              alt="Logo"
+              width={100}
+              height={40}
+              className="h-10 w-auto"
+            />
+          </Link>
+
+          {/* Full width search input below logo */}
+          <div className="flex-1 px-3 pb-3">
+            <SearchField className="w-full" />
+          </div>
+        </div>
+      </div>
+
+      {/* ✅ Mobile Drawer Menu */}
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent side="left" className="w-full">
           <SheetHeader>
             <SheetTitle>Navigation</SheetTitle>
           </SheetHeader>
           <div className="flex flex-col items-center space-y-10 py-10">
-            <SearchField className="w-full" />
             <ul className="space-y-5 text-center text-lg">
               <li>
                 <Link href="/shop" className="font-semibold hover:underline">

@@ -18,6 +18,7 @@ import { Suspense } from "react";
 import MainNavigation from "./MainNavigation";
 import SearchField from "@/components/SearchFiend";
 import MobileMenu from "./MobileMenu";
+import MobileBottomNav from "@/components/ui/MobileBottomNav";
 // import { Suspense } from "react";
 // import MainNavigation from "./MainNavigation";
 // import MobileMenu from "./MobileMenu";
@@ -58,43 +59,54 @@ export default async function Navbar() {
 
   return (
     <header className="bg-background shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 p-5">
+      <div className="mx-auto max-w-7xl p-5">
+        {/* Mobile Menu → only mobile */}
         <Suspense>
-          <MobileMenu
-            collections={collections}
-            loggedInMember={loggedInMember}
-          />
-        </Suspense>
-        <div className="flex flex-wrap items-center gap-5">
-          <Link href="/" className="flex items-center gap-4">
-            <Image
-              src="/logo.png"
-              alt="Flow Shop logo"
-              width={40}
-              height={40}
+          <div className="block md:hidden">
+            <MobileMenu
+              collections={collections}
+              loggedInMember={loggedInMember}
             />
-            <span className="text-xl font-bold">Yuricart</span>
-          </Link>
-          <MainNavigation
-            collections={collections}
-            className="hidden lg:flex"
-          />
-        </div>
+          </div>
+        </Suspense>
 
-        {/* SEARCHBAR */}
-        <SearchField className="right-3 hidden max-w-96 lg:inline" />
+        {/* Desktop header → only desktop */}
+        <div className="hidden items-center justify-between gap-5 md:flex">
+          <div className="flex">
+            <Link href="/" className="flex items-center gap-4">
+              <Image
+                src="/logo.png"
+                alt="Flow Shop logo"
+                width={40}
+                height={40}
+              />
+              <span className="text-xl font-bold">Yuricart</span>
+            </Link>
+            <MainNavigation
+              collections={collections}
+              className="hidden md:flex"
+            />
+          </div>
 
-        {/* USER-ICON */}
-        <div className="flex items-center justify-center gap-5">
+          {/* SEARCHBAR */}
+          <SearchField className="right-3 hidden max-w-96 md:inline" />
+
+          {/* USER & CART */}
           <div className="flex items-center justify-center gap-5">
             <UserButton
               loggedInMember={loggedInMember}
-              className="hidden lg:inline-flex"
+              className="hidden md:inline-flex"
             />
-            <ShoppingCartButton initialData={cart} />
+            <ShoppingCartButton
+              initialData={cart}
+              // className="hidden md:inline-flex"
+            />
           </div>
         </div>
       </div>
+
+      {/* Mobile Bottom Nav → only mobile */}
+      <MobileBottomNav />
     </header>
   );
 }
