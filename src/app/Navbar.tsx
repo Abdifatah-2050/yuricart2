@@ -106,7 +106,7 @@ export default async function Navbar() {
       </div>
 
       {/* Mobile Bottom Nav → only mobile */}
-      <MobileBottomNav />
+      <MobileBottomNav loggedInMember={loggedInMember} cart={cart} />
     </header>
   );
 }
