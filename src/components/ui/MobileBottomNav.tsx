@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { Home, ShoppingBag, ShoppingCart, User } from "lucide-react";
 import { useCartDrawer } from "@/components/ui/CartDrawerContext";
+import useAuth from "@/hooks/auth";
 
 export default function MobileBottomNav() {
-  const { openDrawer } = useCartDrawer(); // ✅ hook ab kaam karega
+  const { openDrawer } = useCartDrawer();
+  const { login } = useAuth();
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white shadow-inner lg:hidden">
@@ -38,13 +40,13 @@ export default function MobileBottomNav() {
           </button>
         </li>
         <li>
-          <Link
-            href="/account"
+          <button
+            onClick={login}
             className="flex flex-col items-center text-xs text-gray-600"
           >
             <User className="h-5 w-5" />
             <span>Account</span>
-          </Link>
+          </button>
         </li>
       </ul>
     </nav>

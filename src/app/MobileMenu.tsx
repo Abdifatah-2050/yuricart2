@@ -49,18 +49,19 @@ export default function MobileMenu({
   return (
     <>
       {/* ✅ Mobile top bar */}
-      <div className="bg-white shadow-md lg:hidden">
+      <div className="bg-white lg:hidden">
         {/* Top row → menu + logo */}
-        <div className="flex p-3">
+        <div className="flex items-start p-3">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
+          <Link href="/" className="flex flex-shrink-0 items-center gap-2">
             <Image
-              src="/logo.png" // apna logo path
+              src="/logo.png"
               alt="Logo"
-              width={100}
+              width={40}
               height={40}
               className="h-10 w-auto"
             />
+            <span className="text-xl font-bold">Yuricart</span>
           </Link>
 
           {/* Full width search input below logo */}
