@@ -1,0 +1,83 @@
+"use client";
+
+import { useCart } from "@/hooks/cart";
+import { getWixServerClient } from "@/lib/wix-client.server";
+import { getCart } from "@/wix-api/cart";
+import Image from "next/image";
+import Link from "next/link";
+import ShoppingCartButton from "@/app/ShoppingCartButton";
+import UserButton from "@/components/UserButton";
+import { getLoggedInMember } from "@/wix-api/members";
+import { getCollections } from "@/wix-api/collections";
+import { Suspense } from "react";
+import MainNavigation from "@/app/MainNavigation";
+import SearchField from "@/components/SearchFiend";
+import MobileMenu from "@/app/MobileMenu";
+import MobileBottomNav from "@/components/ui/MobileBottomNav";
+
+export default function NavbarClient({
+  initialCart,
+  loggedInMember,
+  collections,
+}: any) {
+  const { data: cart } = useCart(initialCart);
+
+  return (
+    <>
+      <header className="bg-background shadow-sm">
+        <div className="mx-auto max-w-7xl p-5">
+          {/* Mobile Menu → only mobile */}
+          <Suspense>
+            <div className="block md:hidden">
+              <MobileMenu
+                collections={collections}
+                loggedInMember={loggedInMember}
+              />
+            </div>
+          </Suspense>
+
+          {/* Desktop header → only desktop */}
+          <div className="hidden items-center justify-between gap-5 md:flex">
+            <div className="flex">
+              <Link href="/" className="flex items-center gap-4">
+                <Image
+                  src="/logo.png"
+                  alt="Flow Shop logo"
+                  width={40}
+                  height={40}
+                />
+                <span className="text-xl font-bold">Yuricart</span>
+              </Link>
+              <MainNavigation
+                collections={collections}
+                className="hidden md:flex"
+              />
+            </div>
+
+            {/* SEARCHBAR */}
+            <SearchField className="right-3 hidden max-w-96 md:inline" />
+
+            {/* USER & CART */}
+            <div className="flex items-center justify-center gap-5">
+              <UserButton
+                loggedInMember={loggedInMember}
+                className="hidden md:inline-flex"
+              />
+              <ShoppingCartButton
+                initialData={cart}
+                // className="hidden md:inline-flex"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Bottom Nav → only mobile */}
+        <MobileBottomNav loggedInMember={loggedInMember} cart={cart} />
+      </header>
+      {/* yahan tumhara desktop navbar ka code reh sakta hai (MainNavigation, SearchField etc.) */}
+
+      {/* Mobile Bottom Nav */}
+      {/* <MobileBottomNav loggedInMember={loggedInMember} cart={cart} /> */}
+    </>
+  );
+}

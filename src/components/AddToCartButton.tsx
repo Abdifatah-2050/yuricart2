@@ -16,17 +16,15 @@ interface AddToCartButtonProps extends ButtonProps {
 }
 
 export default function AddToCartButton({
-    product,
-    selectedOptions,
-    quantity,
-    className,
-    ...props
+  product,
+  selectedOptions,
+  quantity,
+  className,
+  ...props
 }: AddToCartButtonProps) {
+  const mutation = useAddItemToCart();
 
-    const mutation = useAddItemToCart()
-
-
-      return (
+  return (
     <LoadingButton
       onClick={() =>
         mutation.mutate({
@@ -44,21 +42,21 @@ export default function AddToCartButton({
     </LoadingButton>
   );
 
-    // ////TEMP////
-    // return (
-    //     <LoadingButton
-    //     onClick={() =>
-    //         addToCart( wixBrowserClient,{
-    //      product,
-    //     selectedOptions,
-    //     quantity,
-    //         })}
-    // loading={true}
-    //     {...props}
-    // >
-    //     Add to cart
-    //     </LoadingButton>
-    // )
+  // ////TEMP////
+  // return (
+  //     <LoadingButton
+  //     onClick={() =>
+  //         addToCart( wixBrowserClient,{
+  //      product,
+  //     selectedOptions,
+  //     quantity,
+  //         })}
+  // loading={true}
+  //     {...props}
+  // >
+  //     Add to cart
+  //     </LoadingButton>
+  // )
 }
 //   return (
 //     <LoadingButton

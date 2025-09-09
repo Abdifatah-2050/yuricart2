@@ -6,7 +6,7 @@ import { useCartDrawer } from "@/components/ui/CartDrawerContext";
 import useAuth from "@/hooks/auth";
 
 interface MobileBottomNavProps {
-  loggedInMember: any; // members.Member agar type hai to use kar sakte ho
+  loggedInMember: any;
   cart: any;
 }
 
@@ -49,12 +49,19 @@ export default function MobileBottomNav({
             className="relative flex flex-col items-center text-xs text-gray-600"
           >
             <ShoppingCart className="h-5 w-5" />
+            <span
+              className={`absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full text-[10px] font-bold text-white ${cart?.lineItems?.length > 0 ? "bg-red-500" : "bg-red-500"}`}
+            >
+              {cart?.lineItems?.length ?? 0}
+            </span>
+            <span>Cart</span>
+
+            {/* <ShoppingCart className="h-5 w-5" />
             {cart?.lineItems?.length > 0 && (
               <span className="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
                 {cart.lineItems.length}
               </span>
-            )}
-            <span>Cart</span>
+            )} */}
           </button>
         </li>
 

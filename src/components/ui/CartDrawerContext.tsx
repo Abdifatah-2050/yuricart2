@@ -6,6 +6,8 @@ type CartDrawerContextType = {
   isOpen: boolean;
   openDrawer: () => void;
   closeDrawer: () => void;
+  cart: any;
+  setCart: (cart: any) => void;
 };
 
 const CartDrawerContext = createContext<CartDrawerContextType | undefined>(
@@ -14,12 +16,15 @@ const CartDrawerContext = createContext<CartDrawerContextType | undefined>(
 
 export function CartDrawerProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [cart, setCart] = useState<any>(null);
 
   const openDrawer = () => setIsOpen(true);
   const closeDrawer = () => setIsOpen(false);
 
   return (
-    <CartDrawerContext.Provider value={{ isOpen, openDrawer, closeDrawer }}>
+    <CartDrawerContext.Provider
+      value={{ isOpen, openDrawer, closeDrawer, cart, setCart }}
+    >
       {children}
     </CartDrawerContext.Provider>
   );
