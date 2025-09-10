@@ -61,7 +61,7 @@ export default function MobileMenu({
               height={40}
               className="h-10 w-auto"
             />
-            <span className="text-xl font-bold">Yuricart</span>
+            <span className="text-xl font-bold dark:text-black">Yuricart</span>
           </Link>
 
           {/* Full width search input below logo */}

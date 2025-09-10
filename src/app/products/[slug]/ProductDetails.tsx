@@ -2,10 +2,6 @@
 
 import Badge from "@/components/ui/badge";
 import WixImage from "@/components/WixImage";
-
-
-
-
 import { products } from "@wix/stores";
 import { useState } from "react";
 import ProductOptions from "./ProductOptions";
@@ -20,17 +16,16 @@ import { AccordionContent, AccordionTrigger } from "@/components/ui/accordion";
 import AddToCartButton from "@/components/AddToCartButton";
 import BackInStockNotificationButton from "@/components/BackInStockNotificationButton";
 import BuyNowButton from "@/components/BuyNowButton";
-
-
+import WhatsAppOrderButton from "@/components/ui/WhatsAppOrderButton";
 
 interface ProductDetailsProps {
   product: products.Product;
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-    const [quantity, setQuantity] = useState(1);
-   
-      const [selectedOptions, setSelectedOptions] = useState<
+  const [quantity, setQuantity] = useState(1);
+
+  const [selectedOptions, setSelectedOptions] = useState<
     Record<string, string>
   >(
     product.productOptions
@@ -38,32 +33,30 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         [option.name || ""]: option.choices?.[0].description || "",
       }))
       ?.reduce((acc, curr) => ({ ...acc, ...curr }), {}) || {},
-    );
-    
-    
-    const selectedVariant = findVariant(product, selectedOptions);
+  );
 
-     const inStock = checkInStock(product, selectedOptions);
+  const selectedVariant = findVariant(product, selectedOptions);
 
-      const availableQuantity =
+  const inStock = checkInStock(product, selectedOptions);
+
+  const availableQuantity =
     selectedVariant?.stock?.quantity ?? product.stock?.quantity;
 
   const availableQuantityExceeded =
     !!availableQuantity && quantity > availableQuantity;
-    
 
-    const selectedOptionsMedia = product.productOptions?.flatMap((option) => {
+  const selectedOptionsMedia = product.productOptions?.flatMap((option) => {
     const selectedChoice = option.choices?.find(
       (choice) => choice.description === selectedOptions[option.name || ""],
     );
     return selectedChoice?.media?.items ?? [];
-    });
-  
+  });
+
   return (
     <div className="flex flex-col gap-10 md:flex-row lg:gap-20">
-           {/* <ProductMedia media={product.media?.items}/> */}
-        
-        <ProductMedia
+      {/* <ProductMedia media={product.media?.items}/> */}
+
+      <ProductMedia
         media={
           !!selectedOptionsMedia?.length
             ? selectedOptionsMedia
@@ -71,11 +64,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         }
       />
 
-            {/* PRODUCT DETAILS */}
-    <div className="basis-3/5 space-y-5">
-       <div className="space-y-2.5">
-           <h1 className="text-3xl font-bold lg:text-4xl">{product.name}</h1>
-         {product.brand && (
+      {/* PRODUCT DETAILS */}
+      <div className="basis-3/5 space-y-5">
+        <div className="space-y-2.5">
+          <h1 className="text-3xl font-bold lg:text-4xl">{product.name}</h1>
+          {product.brand && (
             <div className="text-muted-foreground">{product.brand}</div>
           )}
           {product.ribbon && <Badge className="block">{product.ribbon}</Badge>}
@@ -85,25 +78,24 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             dangerouslySetInnerHTML={{ __html: product.description }}
             className="prose dark:prose-invert"
           />
-                )}
+        )}
 
-                {/* PRODUCT PRICE */}
+        {/* PRODUCT PRICE */}
 
-                <ProductPrice product={product} selectedVariant={selectedVariant} /> 
+        <ProductPrice product={product} selectedVariant={selectedVariant} />
 
-                {/* PRODUCT OPTIONS */}
-         
-                  <ProductOptions
-                    product={product}
-                     selectedOptions={selectedOptions}
-                     setSelectedOptions={setSelectedOptions}
-                />
+        {/* PRODUCT OPTIONS */}
 
-        
-      <div className="space-y-1.5">
+        <ProductOptions
+          product={product}
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+        />
+
+        <div className="space-y-1.5">
           <Label htmlFor="quantity">Quantity</Label>
-           <div className="flex items-center gap-2.5">
-             <Input
+          <div className="flex items-center gap-2.5">
+            <Input
               name="quantity"
               type="number"
               value={quantity}
@@ -120,8 +112,43 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           </div>
         </div>
 
+        {inStock ? (
+          <div className="flex flex-col gap-2.5">
+            <div className="flex items-center gap-2.5">
+              <AddToCartButton
+                product={product}
+                selectedOptions={selectedOptions}
+                quantity={quantity}
+                disabled={availableQuantityExceeded || quantity < 1}
+                className="w-full"
+              />
+              <BuyNowButton
+                product={product}
+                selectedOptions={selectedOptions}
+                quantity={quantity}
+                disabled={availableQuantityExceeded || quantity < 1}
+              />
+            </div>
 
-               {inStock ? (
+            <div className="whitespace-nowrap">
+              {/* ✅ WhatsApp Order Button */}
+              <WhatsAppOrderButton
+                phoneNumber="+254768054542"
+                productName={product.name ?? "Unnamed Product"}
+                productUrl={`https://www.yuricart.com/products/${product.slug}`}
+                quantity={quantity}
+              />
+            </div>
+          </div>
+        ) : (
+          <BackInStockNotificationButton
+            product={product}
+            selectedOptions={selectedOptions}
+            className="w-full"
+          />
+        )}
+
+        {/* {inStock ? (
           <div className="flex items-center gap-2.5">
             <AddToCartButton
               product={product}
@@ -142,12 +169,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             product={product}
             selectedOptions={selectedOptions}
             className="w-full"
-            />
-        )}
+          />
+        )} */}
 
-
-
-         {!!product.additionalInfoSections?.length && (
+        {!!product.additionalInfoSections?.length && (
           <div className="space-y-1.5 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <InfoIcon className="size-5" />
@@ -170,9 +195,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </Accordion>
           </div>
         )}
-          </div>
-        </div>
-    )
+      </div>
+    </div>
+  );
 }
 
 // /////LATER//
@@ -192,8 +217,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 //   const selectedVariant = findVariant(product, selectedOptions);
 
 //   const inStock = checkInStock(product, selectedOptions);
-
-
 
 //   const availableQuantity =
 //     selectedVariant?.stock?.quantity ?? product.stock?.quantity;
@@ -237,25 +260,25 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 //           selectedOptions={selectedOptions}
 //           setSelectedOptions={setSelectedOptions}
 //         />
-        // <div className="space-y-1.5">
-        //   <Label htmlFor="quantity">Quantity</Label>
-        //   <div className="flex items-center gap-2.5">
-        //     <Input
-        //       name="quantity"
-        //       type="number"
-        //       value={quantity}
-        //       onChange={(e) => setQuantity(Number(e.target.value))}
-        //       className="w-24"
-        //       disabled={!inStock}
-        //     />
-        //     {!!availableQuantity &&
-        //       (availableQuantityExceeded || availableQuantity < 10) && (
-        //         <span className="text-destructive">
-        //           Only {availableQuantity} left in stock
-        //         </span>
-        //       )}
-        //   </div>
-        // </div>
+// <div className="space-y-1.5">
+//   <Label htmlFor="quantity">Quantity</Label>
+//   <div className="flex items-center gap-2.5">
+//     <Input
+//       name="quantity"
+//       type="number"
+//       value={quantity}
+//       onChange={(e) => setQuantity(Number(e.target.value))}
+//       className="w-24"
+//       disabled={!inStock}
+//     />
+//     {!!availableQuantity &&
+//       (availableQuantityExceeded || availableQuantity < 10) && (
+//         <span className="text-destructive">
+//           Only {availableQuantity} left in stock
+//         </span>
+//       )}
+//   </div>
+// </div>
 //         {inStock ? (
 //           <div className="flex items-center gap-2.5">
 //             <AddToCartButton
@@ -279,29 +302,29 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 //             className="w-full"
 //           />
 //         )}
-        // {!!product.additionalInfoSections?.length && (
-        //   <div className="space-y-1.5 text-sm text-muted-foreground">
-        //     <span className="flex items-center gap-2">
-        //       <InfoIcon className="size-5" />
-        //       <span>Additional product information</span>
-        //     </span>
-        //     <Accordion type="multiple">
-        //       {product.additionalInfoSections.map((section) => (
-        //         <AccordionItem value={section.title || ""} key={section.title}>
-        //           <AccordionTrigger>{section.title}</AccordionTrigger>
-        //           <AccordionContent>
-        //             <div
-        //               dangerouslySetInnerHTML={{
-        //                 __html: section.description || "",
-        //               }}
-        //               className="prose text-sm text-muted-foreground dark:prose-invert"
-        //             />
-        //           </AccordionContent>
-        //         </AccordionItem>
-        //       ))}
-        //     </Accordion>
-        //   </div>
-        // )}
+// {!!product.additionalInfoSections?.length && (
+//   <div className="space-y-1.5 text-sm text-muted-foreground">
+//     <span className="flex items-center gap-2">
+//       <InfoIcon className="size-5" />
+//       <span>Additional product information</span>
+//     </span>
+//     <Accordion type="multiple">
+//       {product.additionalInfoSections.map((section) => (
+//         <AccordionItem value={section.title || ""} key={section.title}>
+//           <AccordionTrigger>{section.title}</AccordionTrigger>
+//           <AccordionContent>
+//             <div
+//               dangerouslySetInnerHTML={{
+//                 __html: section.description || "",
+//               }}
+//               className="prose text-sm text-muted-foreground dark:prose-invert"
+//             />
+//           </AccordionContent>
+//         </AccordionItem>
+//       ))}
+//     </Accordion>
+//   </div>
+// )}
 //       </div>
 //     </div>
 //   );
