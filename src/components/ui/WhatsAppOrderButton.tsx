@@ -6,9 +6,11 @@ import { ShoppingCartIcon } from "lucide-react";
 
 interface WhatsAppOrderButtonProps {
   phoneNumber: string;
-  productName?: string | null; // allow null/undefined
+  productName?: string | null;
   productUrl: string;
   quantity: number;
+  regularPrice: number | string;
+  salePrice?: number | string; // optional
 }
 
 export default function WhatsAppOrderButton({
@@ -16,13 +18,16 @@ export default function WhatsAppOrderButton({
   productName,
   productUrl,
   quantity,
+  regularPrice,
+  salePrice,
 }: WhatsAppOrderButtonProps) {
-  const message = `Hi, I want to order this product:\n\n*${productName}*\nQuantity: ${quantity}\n${productUrl}`;
+  const message = `Hi, I want to order this product:\n\n*${productName}*\nQuantity: ${quantity}\nRegular Price: ${regularPrice}${
+    salePrice ? `\nSale Price: ${salePrice}` : ""
+  }\n${productUrl}`;
 
   const waLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message,
   )}`;
-
   return (
     <a href={waLink} target="_blank" rel="noopener noreferrer">
       <Button className="flex items-center gap-2 bg-green-500 text-white hover:bg-green-600">
