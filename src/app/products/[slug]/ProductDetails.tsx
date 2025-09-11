@@ -137,15 +137,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 productName={product.name ?? "Unnamed Product"}
                 productUrl={`https://www.yuricart.com/products/${product.slug}`}
                 quantity={quantity}
-                regularPrice={
-                  (selectedVariant as any)?.priceData?.price ??
-                  (product as any)?.priceData?.price ??
-                  "N/A"
-                }
                 salePrice={
                   (selectedVariant as any)?.priceData?.discountedPrice ??
                   (product as any)?.priceData?.discountedPrice ??
-                  undefined
+                  (selectedVariant as any)?.priceData?.price ??
+                  (product as any)?.priceData?.price ??
+                  0
                 }
               />
             </div>

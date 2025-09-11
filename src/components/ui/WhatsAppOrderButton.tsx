@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MessageCircle } from "lucide-react";
 import { ShoppingCartIcon } from "lucide-react";
 
 interface WhatsAppOrderButtonProps {
@@ -9,8 +8,7 @@ interface WhatsAppOrderButtonProps {
   productName?: string | null;
   productUrl: string;
   quantity: number;
-  regularPrice: number | string;
-  salePrice?: number | string; // optional
+  salePrice: number; // ab sirf sale price
 }
 
 export default function WhatsAppOrderButton({
@@ -18,16 +16,17 @@ export default function WhatsAppOrderButton({
   productName,
   productUrl,
   quantity,
-  regularPrice,
   salePrice,
 }: WhatsAppOrderButtonProps) {
-  const message = `Hi, I want to order this product:\n\n*${productName}*\nQuantity: ${quantity}\nRegular Price: ${regularPrice}${
-    salePrice ? `\nSale Price: ${salePrice}` : ""
-  }\n${productUrl}`;
+  // ✅ total price calculate karo
+  const totalPrice = salePrice * quantity;
+
+  const message = `Hi, I want to order this product:\n\n*${productName}*\nQuantity: ${quantity}\nSale Price: ${totalPrice}\n${productUrl}`;
 
   const waLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message,
   )}`;
+
   return (
     <a href={waLink} target="_blank" rel="noopener noreferrer">
       <Button className="flex items-center gap-2 bg-green-500 text-white hover:bg-green-600">
