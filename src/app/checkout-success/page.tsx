@@ -1,5 +1,3 @@
-"use client";
-
 import { getWixServerClient } from "@/lib/wix-client.server";
 import { getLoggedInMember } from "@/wix-api/members";
 import { getOrder } from "@/wix-api/orders";
@@ -15,9 +13,9 @@ interface PageProps {
   searchParams: { orderId: string };
 }
 
-export const metadata: Metadata = {
-  title: "Checkout success",
-};
+// export const metadata: Metadata = {
+//   title: "Checkout success",
+// };
 
 // Twilio Client
 const twilioClient = twilio(

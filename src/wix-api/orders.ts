@@ -1,10 +1,17 @@
 import { WixClient } from "@/lib/wix-client.base";
+import type { orders } from "@wix/ecom";
 
-export async function getOrder(wixClient: WixClient, orderId: string) {
+// ✅ Extract correct Order type
+export type Order = orders.Order;
+
+export async function getOrder(
+  wixClient: WixClient,
+  orderId: string,
+): Promise<Order | null> {
   try {
     return await wixClient.orders.getOrder(orderId);
   } catch (error) {
-    if ((error as any).details.applicationError.code === "NOT_FOUND") {
+    if ((error as any).details?.applicationError?.code === "NOT_FOUND") {
       return null;
     } else {
       throw error;

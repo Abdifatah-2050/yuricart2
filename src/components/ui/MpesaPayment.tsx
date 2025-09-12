@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { initiateMpesa } from "@/lib/mpesa"; // MPESA helper function
-import { Order } from "@/wix-api/orders";
+import type { Order } from "@/wix-api/orders"; // ✅ now uses correct type
 
 interface MpesaPaymentProps {
-  order: Order | null;
+  order: Order | null; // order type from wix-api/orders
 }
 
 export default function MpesaPayment({ order }: MpesaPaymentProps) {
@@ -24,10 +24,11 @@ export default function MpesaPayment({ order }: MpesaPaymentProps) {
       return;
     }
 
-    const cleanedPhone = phone.replace(/\D/g, ""); // remove any non-digit
+    const cleanedPhone = phone.replace(/\D/g, ""); // remove non-digits
     const amountRaw = order.priceSummary?.total?.amount || "0";
     const amount = Math.round(Number(amountRaw));
-    const orderId = order._id || order.number || "unknown-order";
+    const orderId =
+      (order as any)?._id || (order as any)?.number || "unknown-order";
 
     setIsPaying(true);
 
