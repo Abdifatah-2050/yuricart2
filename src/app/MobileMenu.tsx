@@ -49,19 +49,19 @@ export default function MobileMenu({
   return (
     <>
       {/* ✅ Mobile top bar */}
-      <div className="bg-white lg:hidden">
+      <div className="bg-background lg:hidden">
         {/* Top row → menu + logo */}
-        <div className="flex items-start p-3">
+        <div className="flex items-start md:p-5">
           {/* Logo */}
           <Link href="/" className="flex flex-shrink-0 items-center gap-2">
             <Image
               src="/logo.png"
               alt="Logo"
-              width={40}
-              height={40}
+              width={35}
+              height={35}
               className="h-10 w-auto"
             />
-            <span className="text-xl font-bold dark:text-black">Yuricart</span>
+            {/* <span className="text-xl font-bold dark:text-black">Yuricart</span> */}
           </Link>
 
           {/* Full width search input below logo */}

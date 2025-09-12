@@ -7,13 +7,29 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-x-12 gap-y-16 md:col-span-3 lg:grid-cols-6">
           <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
-            <div className="text-2xl font-bold">Yuricart Electronics</div>
-            <p className="mt-7 text-base leading-relaxed text-muted-foreground">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
-            </p>
+            <div className="text-2xl font-bold text-center">Yuricart Electronics</div>
+            <div className="mt-7 text-base leading-relaxed text-muted-foreground text-center">
+              <p>
+                  🏬 Old Nation House, 1st Floor, Shop B16
+                  🚒 Opposite Fire Station, Tom Mboya St
+                 📍 Nairobi, Kenya  
+              </p>
+          <p className="mt-4">
+          <a href="https://wa.me/254768054542" 
+           className="inline-block px-5 py-2 bg-green-500 text-white font-semibold rounded-full shadow-md hover:bg-green-600 transition">
+           💬 Chat on WhatsApp
+         </a>
+  </p>
+              
+            
+            </div>
 
-            <ul className="mt-9 flex items-center space-x-3">
+   
+
+   
+            
+
+            <ul className="mt-9 flex items-center space-x-3 justify-center">
               <li>
                 <a
                   href="#"
@@ -67,7 +83,7 @@ export default function Footer() {
                 </a>
               </li>
 
-              <li>
+              {/* <li>
                 <a
                   href="#"
                   title=""
@@ -86,11 +102,11 @@ export default function Footer() {
                     ></path>
                   </svg>
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
 
-          <div>
+          <div className="hidden md:block">
             <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
               Company
             </p>
@@ -142,7 +158,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="hidden md:block">
             <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
               Help
             </p>
@@ -194,7 +210,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
+          <div className="hidden md:block col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
             <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
               Subscribe to newsletter
             </p>
@@ -224,11 +240,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="mb-10 mt-16" />
+        <hr className="mb-10 mt-16 " />
 
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-center text-sm text-muted-foreground hidden md:block">
           © Copyright {new Date().getFullYear()}, All Rights Reserved by Yuricart Electronics
-          
         </p>
       </div>
     </footer>

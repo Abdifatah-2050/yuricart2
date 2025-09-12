@@ -27,8 +27,8 @@ export default function NavbarClient({
 
   return (
     <>
-      <header className="bg-background shadow-sm">
-        <div className="mx-auto max-w-7xl p-5">
+      <header className=" bg-background sticky top-0 z-50 shadow-sm">
+        <div className="mx-auto max-w-7xl p-3 md:p-5">
           {/* Mobile Menu */}
           <Suspense>
             <div className="block md:hidden">
@@ -43,8 +43,8 @@ export default function NavbarClient({
           <div className="hidden items-center justify-between gap-5 md:flex">
             <div className="flex">
               <Link href="/" className="flex items-center gap-4">
-                <Image src="/logo.png" alt="Logo" width={40} height={40} />
-                <span className="text-xl font-bold">Yuricart</span>
+                <Image src="/logo.png" alt="Logo" width={50} height={50} />
+                {/* <span className="text-xl font-bold">Yuricart</span> */}
               </Link>
               <MainNavigation
                 collections={collections}

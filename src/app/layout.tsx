@@ -37,7 +37,9 @@ export default function RootLayout({
           <ReactQueryProvider>
             <CartDrawerProvider>
               <Navbar />
+              <div className="min-h-[50vh]">
               {children}
+              </div>
               <Footer />
             </CartDrawerProvider>
           </ReactQueryProvider>
