@@ -40,10 +40,10 @@ export default function NavbarClient({
           </Suspense>
 
           {/* Desktop navbar */}
-          <div className="hidden items-center justify-between gap-5 md:flex">
+          <div className="hidden items-center gap-3 md:flex md:justify-between">
             <div className="flex">
               <Link href="/" className="flex items-center gap-4">
-                <Image src="/logo.png" alt="Logo" width={50} height={50} />
+                <Image src="/logo.svg" alt="Logo" width={60} height={60} />
                 {/* <span className="text-xl font-bold">Yuricart</span> */}
               </Link>
               <MainNavigation

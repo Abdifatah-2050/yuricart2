@@ -51,15 +51,15 @@ export default function MobileMenu({
       {/* ✅ Mobile top bar */}
       <div className="bg-background lg:hidden">
         {/* Top row → menu + logo */}
-        <div className="flex items-start md:p-5">
+        <div className=" md:p-5">
           {/* Logo */}
-          <Link href="/" className="flex flex-shrink-0 items-center gap-2">
+          <Link href="/" className="flex justify-center  flex-shrink-0 items-center gap-2">
             <Image
-              src="/logo.png"
+              src="/logo.svg"
               alt="Logo"
-              width={35}
-              height={35}
-              className="h-10 w-auto"
+              width={70}
+              height={70}
+              className="h-20 w-auto"
             />
             {/* <span className="text-xl font-bold dark:text-black">Yuricart</span> */}
           </Link>

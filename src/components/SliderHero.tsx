@@ -229,11 +229,256 @@
 // export default Slider;
 
 
+// "use client";
+
+// import { ArrowRight } from "lucide-react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { useEffect, useState } from "react";
+
+// const slides = [
+//   {
+//     id: 1,
+//     title: "",
+//     description: "",
+//     img: "/images/banner1.jpg",
+//     url: "/",
+//     bg: "bg-gradient-to-r from-yellow-50 to-pink-50",
+//   },
+//   {
+//     id: 2,
+//     title: "",
+//     description: "",
+//     img: "/images/banner2.png",
+//     url: "/",
+//     bg: "bg-gradient-to-r from-pink-50 to-blue-50",
+//   },
+//   {
+//     id: 3,
+//     title: "Spring Sale Collections",
+//     description: "Sale! Up to 50% off!",
+//     img: "/images/banner3.png",
+//     url: "/",
+//     bg: "bg-gradient-to-r from-blue-50 to-yellow-50",
+//   },
+//   {
+//     id: 4,
+//     title: "Spring Sale Collections",
+//     description: "Sale! Up to 40% off!",
+//     img: "/images/banner4.png",
+//     url: "/",
+//   },
+//   {
+//     id: 5,
+//     title: "Spring Sale Collections",
+//     description: "Sale! Up to 50% off!",
+//     img: "/images/banner5.png",
+//     url: "/",
+//     bg: "bg-gradient-to-r from-blue-50 to-yellow-50",
+//   },
+// ];
+
+// const Slider = () => {
+//   const [current, setCurrent] = useState(0);
+
+//   // Auto-play (optional)
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+//     }, 3000);
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return (
+//     <div className="relative overflow-hidden">
+//       <div
+//         className="w-max flex transition-all ease-in-out duration-1000"
+//         style={{ transform: `translateX(-${current * 100}vw)` }}
+//       >
+//         {slides.map((slide) => (
+//           <div
+//             key={slide.id}
+//             className={`${slide.bg || ""} w-screen h-auto md:h-[75vh] flex flex-col xl:flex-row`}
+//           >
+//             {/* IMAGE CONTAINER */}
+//             <div className="w-full h-[40vh] sm:h-[50vh] md:h-full relative">
+//               <Image
+//                 src={slide.img}
+//                 alt=""
+//                 fill
+//                 sizes="100vw"
+//                 className="object-cover"
+//               />
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* DOTS */}
+//       <div className="absolute left-1/2 -translate-x-1/2 bottom-4 md:bottom-8 flex gap-4">
+//         {slides.map((slide, index) => (
+//           <div
+//             key={slide.id}
+//             onClick={() => setCurrent(index)}
+//             className={`w-3 h-3 rounded-full ring-1 ring-gray-600 cursor-pointer flex items-center justify-center ${
+//               current === index ? "scale-150" : ""
+//             }`}
+//           >
+//             {current === index && (
+//               <div className="w-[6px] h-[6px] bg-gray-600 rounded-full"></div>
+//             )}
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Slider;
+
+
+
+// "use client";
+
+// import { ArrowRight } from "lucide-react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { useEffect, useState } from "react";
+
+// const slides = [
+//   {
+//     id: 1,
+//     title: "",
+//     description: "",
+//     img: "/images/banner1.jpg",
+//     url: "/",
+//     bg: "bg-gradient-to-r from-yellow-50 to-pink-50",
+//   },
+//   {
+//     id: 2,
+//     title: "",
+//     description: "",
+//     img: "/images/banner2.png",
+//     url: "/",
+//     bg: "bg-gradient-to-r from-pink-50 to-blue-50",
+//   },
+//   {
+//     id: 3,
+//     title: "Spring Sale Collections",
+//     description: "Sale! Up to 50% off!",
+//     img: "/images/banner3.png",
+//     url: "/",
+//     bg: "bg-gradient-to-r from-blue-50 to-yellow-50",
+//   },
+//   {
+//     id: 4,
+//     title: "Spring Sale Collections",
+//     description: "Sale! Up to 40% off!",
+//     img: "/images/banner4.png",
+//     url: "/",
+//   },
+//   {
+//     id: 5,
+//     title: "Spring Sale Collections",
+//     description: "Sale! Up to 50% off!",
+//     img: "/images/banner5.png",
+//     url: "/",
+//     bg: "bg-gradient-to-r from-blue-50 to-yellow-50",
+//   },
+// ];
+
+// const Slider = () => {
+//   const [current, setCurrent] = useState(0);
+//   const [paused, setPaused] = useState(false);
+
+//   // Auto-play
+//   useEffect(() => {
+//     let interval: NodeJS.Timeout;
+//     if (!paused) {
+//       interval = setInterval(() => {
+//         setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+//       }, 3000);
+//     }
+//     return () => clearInterval(interval);
+//   }, [paused]);
+
+//   return (
+//     <div
+//       className="relative overflow-hidden"
+//       onMouseEnter={() => setPaused(true)}
+//       onMouseLeave={() => setPaused(false)}
+//     >
+//       {/* Slides container */}
+//       <div
+//         className="w-max flex transition-transform duration-1000 ease-in-out"
+//         style={{ transform: `translateX(-${current * 100}vw)` }}
+//       >
+//         {slides.map((slide) => (
+//           <div
+//             key={slide.id}
+//             className={`${slide.bg || ""} w-screen h-[50vh] md:h-[70vh] lg:h-[80vh] flex flex-col xl:flex-row relative`}
+//           >
+//             {/* IMAGE */}
+//             <div className="w-full h-full relative">
+//               <Image
+//                 src={slide.img}
+//                 alt=""
+//                 fill
+//                 sizes="100vw"
+//                 className="object-contain md:object-cover"
+//                 priority
+//               />
+//             </div>
+
+//             {/* TEXT OVERLAY (optional) */}
+//             {(slide.title || slide.description) && (
+//               <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-800 bg-black/30">
+//                 <h2 className="text-lg sm:text-2xl md:text-4xl font-bold">
+//                   {slide.title}
+//                 </h2>
+//                 <p className="mt-2 text-sm sm:text-base md:text-xl">
+//                   {slide.description}
+//                 </p>
+//                 <Link
+//                   href={slide.url}
+//                   className="mt-4 flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg shadow-md hover:bg-primary/90 transition"
+//                 >
+//                   Shop Now <ArrowRight className="w-4 h-4" />
+//                 </Link>
+//               </div>
+//             )}
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* DOTS */}
+//       <div className="absolute left-1/2 -translate-x-1/2 bottom-2 sm:bottom-4 md:bottom-8 flex gap-3">
+//         {slides.map((slide, index) => (
+//           <div
+//             key={slide.id}
+//             onClick={() => setCurrent(index)}
+//             className={`w-3 h-3 rounded-full ring-1 ring-gray-600 cursor-pointer flex items-center justify-center transition-transform ${
+//               current === index ? "scale-150" : ""
+//             }`}
+//           >
+//             {current === index && (
+//               <div className="w-[6px] h-[6px] bg-gray-600 rounded-full"></div>
+//             )}
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Slider;
+
+
+
+
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const slides = [
@@ -241,7 +486,7 @@ const slides = [
     id: 1,
     title: "",
     description: "",
-    img: "/images/banner1.png",
+    img: "/images/banner1.jpg",
     url: "/",
     bg: "bg-gradient-to-r from-yellow-50 to-pink-50",
   },
@@ -280,47 +525,69 @@ const slides = [
 
 const Slider = () => {
   const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
 
-  // Auto-play (optional)
+  // Auto-play
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 3000);
+    let interval: NodeJS.Timeout;
+    if (!paused) {
+      interval = setInterval(() => {
+        setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      }, 3000);
+    }
     return () => clearInterval(interval);
-  }, []);
+  }, [paused]);
 
   return (
-    <div className="relative overflow-hidden">
+    <div
+      className="relative overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Slides container */}
       <div
-        className="w-max flex transition-all ease-in-out duration-1000"
+        className="w-max flex transition-transform duration-1000 ease-in-out"
         style={{ transform: `translateX(-${current * 100}vw)` }}
       >
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className={`${slide.bg || ""} w-screen h-auto md:h-[75vh] flex flex-col xl:flex-row`}
+            className={`${slide.bg || ""} w-screen h-[50vh] md:h-[70vh] lg:h-[80vh] flex flex-col xl:flex-row relative`}
           >
-            {/* IMAGE CONTAINER */}
-            <div className="w-full h-[40vh] sm:h-[50vh] md:h-full relative">
+            {/* IMAGE */}
+            <div className="w-full h-full relative">
               <Image
                 src={slide.img}
                 alt=""
                 fill
                 sizes="100vw"
                 className="object-cover"
+                priority
               />
             </div>
+
+            {/* TEXT OVERLAY (optional) */}
+            {(slide.title || slide.description) && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-800 bg-black/30">
+                <h2 className="text-lg sm:text-2xl md:text-4xl font-bold">
+                  {slide.title}
+                </h2>
+                <p className="mt-2 text-sm sm:text-base md:text-xl">
+                  {slide.description}
+                </p>
+              </div>
+            )}
           </div>
         ))}
       </div>
 
       {/* DOTS */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-4 md:bottom-8 flex gap-4">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-2 sm:bottom-4 md:bottom-8 flex gap-3">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
             onClick={() => setCurrent(index)}
-            className={`w-3 h-3 rounded-full ring-1 ring-gray-600 cursor-pointer flex items-center justify-center ${
+            className={`w-3 h-3 rounded-full ring-1 ring-gray-600 cursor-pointer flex items-center justify-center transition-transform ${
               current === index ? "scale-150" : ""
             }`}
           >
@@ -335,5 +602,7 @@ const Slider = () => {
 };
 
 export default Slider;
+
+
 
 

@@ -12,10 +12,10 @@ export default function Footer() {
               <p>
                   🏬 Old Nation House, 1st Floor, Shop B16
                   🚒 Opposite Fire Station, Tom Mboya St
-                 📍 Nairobi, Kenya  
+                 📍 Nairobi, Kenya
               </p>
           <p className="mt-4">
-          <a href="https://wa.me/254768054542" 
+          <a href="https://wa.me/254768054542"
            className="inline-block px-5 py-2 bg-green-500 text-white font-semibold rounded-full shadow-md hover:bg-green-600 transition">
            💬 Chat on WhatsApp
          </a>
@@ -30,7 +30,69 @@ export default function Footer() {
             
 
             <ul className="mt-9 flex items-center space-x-3 justify-center">
-              <li>
+
+
+              {/* Facebook */}
+  <li>
+    <a
+      href="https://www.facebook.com/yuricarts/"
+      title="Facebook"
+      className="flex size-7 items-center justify-center rounded-full bg-foreground text-background transition-all duration-200 hover:bg-primary focus:bg-primary"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg
+        className="h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
+      </svg>
+    </a>
+  </li>
+
+  {/* Instagram */}
+  <li>
+    <a
+      href="https://www.instagram.com/yuricart_electronics?igsh=MTNheHV6ODUzZXZhYg=="
+      title="Instagram"
+      className="flex size-7 items-center justify-center rounded-full bg-foreground text-background transition-all duration-200 hover:bg-primary focus:bg-primary"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg
+        className="h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.6A4.4 4.4 0 1 0 16.4 13 4.4 4.4 0 0 0 12 8.6zm6.7-3.3a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z" />
+      </svg>
+    </a>
+  </li>
+
+  {/* TikTok */}
+ <li>
+  <a
+    href="https://www.tiktok.com/@yuritechs?_t=ZM-8ziSokY36Xd&_r=1"
+    title="TikTok"
+    className="flex size-7 items-center justify-center rounded-full bg-foreground text-background transition-all duration-200 hover:bg-primary focus:bg-primary"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <svg
+      className="h-4 w-4"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      fill="currentColor"
+    >
+      <path d="M220 89.6a54.5 54.5 0 0 1-31.6-10.1A54.7 54.7 0 0 1 174 48h-28v116.5a24.5 24.5 0 1 1-16-23.1V109a52.5 52.5 0 1 0 36 49.5V97.9a86.8 86.8 0 0 0 54 18.7V89.6z"/>
+    </svg>
+  </a>
+</li>
+
+              {/* <li>
                 <a
                   href="#"
                   title=""
@@ -83,7 +145,7 @@ export default function Footer() {
                 </a>
               </li>
 
-              {/* <li>
+               <li>
                 <a
                   href="#"
                   title=""
@@ -103,7 +165,13 @@ export default function Footer() {
                   </svg>
                 </a>
               </li> */}
-            </ul>
+            </ul> 
+
+            
+
+
+
+
           </div>
 
           <div className="hidden md:block">
@@ -249,3 +317,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+
