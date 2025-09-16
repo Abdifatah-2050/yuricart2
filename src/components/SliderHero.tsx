@@ -474,6 +474,7 @@
 // import Image from "next/image";
 // import { useEffect, useState } from "react";
 
+<<<<<<< HEAD
 // const slides = [
 //   {
 //     id: 1,
@@ -609,6 +610,49 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
+=======
+const slides = [
+  {
+    id: 1,
+    title: "",
+    description: "",
+    img: "/images/banner1.jpg",
+    url: "/",
+    bg: "bg-gradient-to-r from-yellow-50 to-pink-50",
+  },
+  {
+    id: 2,
+    title: "",
+    description: "",
+    img: "/images/banner2.png",
+    url: "/",
+    bg: "bg-gradient-to-r from-pink-50 to-blue-50",
+  },
+  {
+    id: 3,
+    title: "",
+    description: "",
+    img: "/images/banner3.png",
+    url: "/",
+    bg: "bg-gradient-to-r from-blue-50 to-yellow-50",
+  },
+  {
+    id: 4,
+    title: "",
+    description: "",
+    img: "/images/banner4.png",
+    url: "/",
+  },
+  {
+    id: 5,
+    title: "",
+    description: "",
+    img: "/images/banner5.png",
+    url: "/",
+    bg: "bg-gradient-to-r from-blue-50 to-yellow-50",
+  },
+];
+>>>>>>> d70ca2e0f879a1833a618a87b9056a75a534773a
 
 const Slider = () => {
   return (
