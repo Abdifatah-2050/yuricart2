@@ -474,7 +474,6 @@
 // import Image from "next/image";
 // import { useEffect, useState } from "react";
 
-<<<<<<< HEAD
 // const slides = [
 //   {
 //     id: 1,
@@ -610,7 +609,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
-=======
+
 const slides = [
   {
     id: 1,
@@ -652,7 +651,6 @@ const slides = [
     bg: "bg-gradient-to-r from-blue-50 to-yellow-50",
   },
 ];
->>>>>>> d70ca2e0f879a1833a618a87b9056a75a534773a
 
 const Slider = () => {
   return (

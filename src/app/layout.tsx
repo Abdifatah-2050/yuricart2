@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   },
   description:
     "Shop smart, save big – Discover electronics without breaking the bank.",
+  icons: {
+    icon: "/logo.svg", // ✅ favicon yahan add karo
+  },
 };
 
 export default function RootLayout({
@@ -64,4 +67,3 @@ export default function RootLayout({
     </html>
   );
 }
-
