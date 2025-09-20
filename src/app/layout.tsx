@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Yuricart",
     description:
       "Shop smart, save big – Discover electronics without breaking the bank.",
-    images: ["/logoog.jpg"],
+    images: ["/newlogoog.jpg"],
   },
 };
 
