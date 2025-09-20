@@ -51,11 +51,14 @@ export default function MobileMenu({
       {/* ✅ Mobile top bar */}
       <div className="bg-background lg:hidden">
         {/* Top row → menu + logo */}
-        <div className=" md:p-5">
+        <div className="md:p-5">
           {/* Logo */}
-          <Link href="/" className="flex justify-center  flex-shrink-0 items-center gap-2">
+          <Link
+            href="/"
+            className="flex flex-shrink-0 items-center justify-center gap-2"
+          >
             <Image
-              src="/logo.svg"
+              src="/logonew.svg"
               alt="Logo"
               width={70}
               height={70}

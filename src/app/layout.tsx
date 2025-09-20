@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "next-themes";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { CartDrawerProvider } from "@/components/ui/CartDrawerContext";
-import Script from "next/script"; // ✅ Import Script
+import Script from "next/script";
 
 const lora = Lora({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "Shop smart, save big – Discover electronics without breaking the bank.",
   icons: {
-    icon: "/logo.svg", // ✅ favicon yahan add karo
+    icon: "/logonew.svg",
   },
 };
 

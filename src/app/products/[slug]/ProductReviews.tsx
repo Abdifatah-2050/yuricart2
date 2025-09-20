@@ -121,7 +121,7 @@ function Review({
           <div className="flex items-center gap-2">
             <CornerDownRight className="size-5" />
             <Image
-              src="/logo.png"
+              src="/logonew.png"
               alt="Flow Store logo"
               width={24}
               height={24}
