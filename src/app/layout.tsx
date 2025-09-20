@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   description:
     "Shop smart, save big – Discover electronics without breaking the bank.",
   icons: {
-    icon: "/logonew.svg", // ✅ Favicon
+    icon: "/logonew.svg", // Path to your favicon
   },
   openGraph: {
     title: "Yuricart",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Yuricart",
     images: [
       {
-        url: "/logonew.svg",
+        url: "/newlogoog.jpg",
         width: 1200,
         height: 630,
         alt: "Yuricart Logo",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Yuricart",
     description:
       "Shop smart, save big – Discover electronics without breaking the bank.",
-    images: ["/logonew.svg"],
+    images: ["/logoog.jpg"],
   },
 };
 
