@@ -671,7 +671,7 @@ const Slider = () => {
       >
         <SwiperSlide>
           <Image
-            src="/images/banner01.jpg"
+            src="/images/banner1.png"
             alt="aaaa"
             width={1920}
             height={500}
@@ -680,17 +680,17 @@ const Slider = () => {
         <SwiperSlide>
           {" "}
           <Image
-            src="/images/banner02.jpg"
+            src="/images/banner2.png"
             width={1920}
             height={500}
             alt="aaaa"
             className="rounded-lg"
           />
         </SwiperSlide>
-        {/* <SwiperSlide>
+        <SwiperSlide>
           {" "}
           <Image
-            src="/images/banner8.jpg"
+            src="/images/banner3.png"
             width={1920}
             height={500}
             alt="aaaa"
@@ -699,7 +699,7 @@ const Slider = () => {
         <SwiperSlide>
           {" "}
           <Image
-            src="/images/banner9.jpg"
+            src="/images/banner4.png"
             width={1920}
             height={500}
             alt="aaaa"
@@ -708,12 +708,12 @@ const Slider = () => {
         <SwiperSlide>
           {" "}
           <Image
-            src="/images/banner10.jpg"
+            src="/images/banner5.png"
             width={1920}
             height={500}
             alt="aaaa"
           />
-        </SwiperSlide> */}
+        </SwiperSlide>
       </Swiper>
     </>
   );
