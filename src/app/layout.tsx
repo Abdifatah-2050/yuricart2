@@ -12,6 +12,18 @@ import Script from "next/script";
 
 const lora = Lora({ subsets: ["latin"] });
 
+// export const metadata: Metadata = {
+//   title: {
+//     template: "%s | Yuricart",
+//     absolute: "Yuricart",
+//   },
+//   description:
+//     "Shop smart, save big – Discover electronics without breaking the bank.",
+//   icons: {
+//     icon: "/logonew.svg",
+//   },
+// };
+
 export const metadata: Metadata = {
   title: {
     template: "%s | Yuricart",
@@ -20,7 +32,31 @@ export const metadata: Metadata = {
   description:
     "Shop smart, save big – Discover electronics without breaking the bank.",
   icons: {
-    icon: "/logonew.svg",
+    icon: "/logonew.svg", // ✅ Favicon
+  },
+  openGraph: {
+    title: "Yuricart",
+    description:
+      "Shop smart, save big – Discover electronics without breaking the bank.",
+    url: "https://www.yuricart.com/", //
+    siteName: "Yuricart",
+    images: [
+      {
+        url: "/logonew.svg",
+        width: 1200,
+        height: 630,
+        alt: "Yuricart Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yuricart",
+    description:
+      "Shop smart, save big – Discover electronics without breaking the bank.",
+    images: ["/logonew.svg"],
   },
 };
 

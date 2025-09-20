@@ -608,7 +608,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 const slides = [
   {
@@ -663,10 +663,15 @@ const Slider = () => {
           } as React.CSSProperties
         }
         pagination={{
-          clickable: true, // ✅ dots enable ho jayenge
+          clickable: true,
         }}
         navigation={true}
-        modules={[Pagination, Navigation]}
+        loop={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper"
       >
         <SwiperSlide>
